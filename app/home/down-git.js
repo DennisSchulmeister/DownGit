@@ -44,10 +44,10 @@ downGitModule.factory('downGitService', [
 
             } else if(!parameters.rootDirectory || parameters.rootDirectory=="" ||
                 parameters.rootDirectory=="true"){
-                info.rootDirectoryName = info.rootName+"/";
+                info.rootDirectoryName = decodeURI(info.rootName)+"/";
 
             } else{
-                info.rootDirectoryName = parameters.rootDirectory+"/";
+                info.rootDirectoryName = decodeURI(parameters.rootDirectory)+"/";
             }
 
             return info;
@@ -102,7 +102,7 @@ downGitModule.factory('downGitService', [
 
                 progress.isProcessing.val=false;
                 zip.generateAsync({type:"blob"}).then(function(content) {
-                    saveAs(content, repoInfo.downloadFileName+".zip");
+                    saveAs(content, decodeURI(repoInfo.downloadFileName)+".zip");
                 });
             });
         }
